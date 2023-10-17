@@ -22,13 +22,13 @@ eustock <- eustock |> mutate(time = 1:n())
 ```
 
 
-```{r}
+```{r CAC stocks}
 ggplot(eustock, aes(x = time, y = CAC)) +
   geom_line()
 ```
 
 ### Wrong Solution
-```{r}
+```{r DAX and CAC stocks}
 ggplot(eustock, aes(x = time, y = DAX)) +
   geom_line() +
   geom_line(aes(y = CAC), color = "red")
@@ -45,13 +45,13 @@ long_eustock <-
   eustock |> pivot_longer(-time, names_to = "Stock index", values_to = "Value")
 ```
 
-```{r}
+```{r eustocks}
 ggplot(long_eustock, aes(x = time, y = Value, group = `Stock index`, color = `Stock index`)) +
   geom_line()
 ```
 You could get rid of groups here, but some other time it might be necessary.
 
-```{r}
+```{r eustocks facet}
 #| fig-height: 10
 ggplot(long_eustock, aes(x = time, y = Value, group = `Stock index`, color = `Stock index`)) +
   geom_line() +
